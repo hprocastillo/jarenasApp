@@ -1,0 +1,43 @@
+<ng-container *ngIf="authSvc.user$ | async as user">
+  <div class="row">
+    <div class="col-12">
+      <ul class="list-group list-group-flush">
+
+        <!-- BUTTON CHECKLIST -->
+        <li class="list-group-item border-0">
+          <div [routerLink]="['/logistics/checklist', user.uid, user.email]"
+               class="card shadow bg-white rounded text-center">
+            <div class="card-body">
+              <img alt="" class="img-menu" src="../../../../../assets/images/dashboard/checklist.png">
+              <h6 class="mt-4 mb-0 text-muted">CHECKLIST</h6>
+            </div>
+          </div>
+        </li>
+
+        <!-- BUTTON ROUTES -->
+        <li class="list-group-item border-0">
+          <div [routerLink]="['/logistics/routes', user.uid, user.email]"
+               class="card shadow bg-white rounded text-center">
+            <div class="card-body">
+              <img alt="" class="img-menu" src="../../../../../assets/images/dashboard/route.png">
+              <h6 class="mt-4 mb-0 text-muted">RUTAS / VIAJES</h6>
+            </div>
+          </div>
+        </li>
+
+        <!-- BUTTON VEHICLES -->
+        <li class="list-group-item border-0">
+          <div [routerLink]="['/logistics/vehicles', user.uid, user.email]"
+               class="card shadow bg-white rounded text-center">
+            <div class="card-body">
+              <img alt="" class="img-menu" src="../../../../../assets/images/dashboard/vehicle.png">
+              <h6 class="mt-4 mb-0 text-muted">VEHÍCULOS</h6>
+            </div>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+
+</ng-container>

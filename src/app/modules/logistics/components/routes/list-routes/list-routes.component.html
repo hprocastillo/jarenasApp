@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-12">
+
+    <!-- ROUTES -->
+    <ng-container *ngIf="listRoutes.length > 0; else noRoutes">
+      <ul class="list-group list-group-flush m-0 p-0">
+
+        <li *ngFor="let route of listRoutes" class="list-group-item border-0">
+          <div class="card shadow bg-white rounded">
+            <ul class="list-group list-group-flush">
+
+              <li class="list-group-item d-flex justify-content-between">
+                <p class="m-0">Ruta:</p>
+                <p class="text-muted m-0">{{route.description}}</p>
+              </li>
+
+              <li class="list-group-item d-flex justify-content-between">
+                <p class="m-0">Tiempo aprox. de llegada:</p>
+                <p class="text-muted m-0">{{route.timeOfArrival}} Hrs.</p>
+              </li>
+
+              <li class="list-group-item d-flex justify-content-between">
+                <button type="button" class="btn btn-secondary btn-sm" (click)="getView(route.id, user, employee)">
+                  <svg class="bi bi-eye-fill" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"
+                       xmlns="http://www.w3.org/2000/svg">
+                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                    <path
+                      d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                  </svg>
+                  Ver
+                </button>
+              </li>
+
+            </ul>
+          </div>
+
+        </li>
+      </ul>
+    </ng-container>
+
+    <!-- NO ROUTES -->
+    <ng-template #noRoutes>
+      <div class="alert alert-warning" role="alert">
+        No hay rutas publicadas.
+      </div>
+    </ng-template>
+
+  </div>
+</div>
+
+<app-toolbar
+  [btnHome]="true"
+  (btnBackOut)="getBack($event)"
+  [btnBackIn]="true"
+></app-toolbar>

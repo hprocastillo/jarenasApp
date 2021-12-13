@@ -1,0 +1,44 @@
+<ng-container *ngIf="authSvc.user$ | async as user">
+  <div class="row">
+    <div class="col-12">
+      <ul #nav="ngbNav" [(activeId)]="active" class="nav-tabs" ngbNav>
+
+        <!-- TRIPS -->
+        <li [ngbNavItem]="1">
+          <a ngbNavLink>VIAJES</a>
+          <ng-template ngbNavContent>
+
+            <ng-container *ngIf="listEmployees.length > 0">
+              <ng-container *ngFor="let employee of listEmployees">
+                <app-list-trips
+                  [employee]="employee"
+                  [user]="user"
+                ></app-list-trips>
+              </ng-container>
+            </ng-container>
+
+          </ng-template>
+        </li>
+
+        <!-- ROUTES -->
+        <li [ngbNavItem]="2">
+          <a ngbNavLink>RUTAS</a>
+          <ng-template ngbNavContent>
+
+            <ng-container *ngIf="listEmployees.length > 0">
+              <ng-container *ngFor="let employee of listEmployees">
+                <app-list-routes
+                  [employee]="employee"
+                  [user]="user"
+                ></app-list-routes>
+              </ng-container>
+            </ng-container>
+
+          </ng-template>
+        </li>
+
+      </ul>
+      <div [ngbNavOutlet]="nav" class="mt-2"></div>
+    </div>
+  </div>
+</ng-container>

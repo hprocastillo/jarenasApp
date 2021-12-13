@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-12">
+    <ng-container *ngIf="listVehicles.length > 0;else noResults">
+      <ng-container *ngFor="let vehicle of listVehicles">
+        <div class="card shadow mt-1 mb-1 bg-white rounded">
+          <ul class="list-group list-group-flush">
+
+            <li class="list-group-item text-center">
+              <h5 class="m-0 p-0">VEHÍCULO ASIGNADO</h5>
+            </li>
+
+            <li class="list-group-item d-flex justify-content-between">
+              <p class="m-0">Descripción:</p>
+              <p class="text-muted m-0">{{vehicle.description}}</p>
+            </li>
+
+            <li class="list-group-item d-flex justify-content-between">
+              <p class="m-0">Placa:</p>
+              <p class="text-muted m-0">{{vehicle.badge}}</p>
+            </li>
+
+            <li class="list-group-item d-flex justify-content-between">
+              <p class="m-0">Marca:</p>
+              <p class="text-muted m-0">
+                <app-brand-by-id [brandId]="vehicle.brandId"></app-brand-by-id>
+              </p>
+            </li>
+
+            <li class="list-group-item d-flex justify-content-between">
+              <p class="m-0">Año de fabricación:</p>
+              <p class="text-muted m-0">{{vehicle.birthDay}}</p>
+            </li>
+
+          </ul>
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <ng-template #noResults>
+      <div class="alert alert-warning" role="alert">
+        No tienes un vehículo asignado.
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+<app-toolbar
+  [btnHome]="true"
+  (btnBackOut)="getBack($event)"
+  [btnBackIn]="true"
+></app-toolbar>

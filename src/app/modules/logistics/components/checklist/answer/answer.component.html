@@ -1,0 +1,44 @@
+<!-- NEW ANSWER -->
+<ng-container *ngIf="exist === 'NO'">
+  <div (change)="getSave($event.target, user)" class="btn-group btn-group-toggle" ngbRadioGroup>
+    <label class="btn-primary" ngbButtonLabel>
+      <input ngbButton type="radio" value="SI">SI
+    </label>
+    <label class="btn-primary" ngbButtonLabel>
+      <input ngbButton type="radio" value="NO">NO
+    </label>
+    <label class="btn-primary" ngbButtonLabel>
+      <input ngbButton type="radio" value="NA">N/A
+    </label>
+  </div>
+</ng-container>
+
+
+<!-- EDIT ANSWER -->
+<ng-container *ngIf="exist === 'YES'">
+  <ng-container *ngFor="let a of answer">
+    <div (change)="getEdit($event.target, user,a)" [(ngModel)]="a.value" class="btn-group btn-group-toggle"
+         ngbRadioGroup>
+      <label class="btn-primary" ngbButtonLabel>
+        <input ngbButton type="radio" value="SI">SI
+      </label>
+      <label class="btn-primary" ngbButtonLabel>
+        <input ngbButton type="radio" value="NO">NO
+      </label>
+      <label class="btn-primary" ngbButtonLabel>
+        <input ngbButton type="radio" value="NA">N/A
+      </label>
+    </div>
+
+    <div>
+      <input
+        type="text"
+        class="form-control form-control-sm mt-2"
+        [ngModel]="a.observations"
+        name="observations"
+        placeholder="Observaciones"
+        (change)="getEditObservations($event.target, user, a)">
+    </div>
+
+  </ng-container>
+</ng-container>

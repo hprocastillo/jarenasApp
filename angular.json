@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "a60147a8-c9db-4cd0-a278-32082bd8cd24"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -20,6 +23,12 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "rxjs-compat",
+              "jspdf",
+              "canvg",
+              "@babel/runtime-corejs3"
+            ],
             "outputPath": "dist/jarenasApp",
             "index": "src/index.html",
             "main": "src/main.ts",

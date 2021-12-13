@@ -1,0 +1,55 @@
+<ng-container *ngIf="authSvc.user$ | async as user">
+  <ul class="list-group p-0 m-0">
+    <li *ngFor="let question of listQuestions" class="list-group-item p-0 border-0">
+      <div class="row border-bottom border-danger">
+        <div class="col-6 p-1">
+          <p class="m-0 p-0">{{question.description}}</p>
+        </div>
+        <div class="col-1 p-1">
+          <p class="m-0 p-0 text-center">
+            <app-export-answer
+              [categoryId]="categoryId"
+              [checklistId]="checklistId"
+              [column]="'SI'"
+              [employeeId]="employeeId"
+              [questionId]="question.id">
+            </app-export-answer>
+          </p>
+        </div>
+        <div class="col-1 p-1">
+          <p class="m-0 p-0 text-center">
+            <app-export-answer
+              [categoryId]="categoryId"
+              [checklistId]="checklistId"
+              [column]="'NO'"
+              [employeeId]="employeeId"
+              [questionId]="question.id">
+            </app-export-answer>
+          </p>
+        </div>
+        <div class="col-1 p-1">
+          <p class="m-0 p-0 text-center">
+            <app-export-answer
+              [categoryId]="categoryId"
+              [checklistId]="checklistId"
+              [column]="'NA'"
+              [employeeId]="employeeId"
+              [questionId]="question.id">
+            </app-export-answer>
+          </p>
+        </div>
+        <div class="col-3 p-1">
+          <p class="m-0 p-0 text-center">
+            <app-export-answer
+              [categoryId]="categoryId"
+              [checklistId]="checklistId"
+              [column]="'OBS'"
+              [employeeId]="employeeId"
+              [questionId]="question.id">
+            </app-export-answer>
+          </p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</ng-container>

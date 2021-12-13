@@ -1,0 +1,105 @@
+<div class="row">
+  <div class="col-12">
+    <h5 class="text-center font-weight-bold mt-3">MODIFICAR VIAJE</h5>
+
+    <form #editForm (ngSubmit)="getEdit(userId, userEmail)">
+
+      <div class="form-group">
+        <label class="text-muted" for="cbChecklist">Checklist vigente:</label>
+        <select [(ngModel)]="trip.checklistId" class="form-control" id="cbChecklist" name="checklistId">
+          <option selected value="">Seleccionar Checklist</option>
+          <option *ngFor="let checklist of listChecklist" value="{{checklist.id}}">{{checklist.description}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="text-muted" for="cbRoute">Rutas disponibles:</label>
+        <select [(ngModel)]="trip.routeId" class="form-control" id="cbRoute" name="routeId">
+          <option selected value="">Seleccionar Ruta</option>
+          <option *ngFor="let route of listRoutes" value="{{route.id}}">{{route.description}}</option>
+        </select>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-6">
+          <label class="text-muted" for="cbVehicle">Vehículo asignado:</label>
+          <select [(ngModel)]="trip.vehicleId" class="form-control" id="cbVehicle" name="vehicleId">
+            <option selected value="">Seleccionar</option>
+            <option *ngFor="let vehicle of listVehicles" value="{{vehicle.id}}">{{vehicle.badge}}</option>
+          </select>
+        </div>
+        <div class="col-6">
+          <label class="text-muted" for="txtTimeOnRoute">Horas en ruta:</label>
+          <input [(ngModel)]="trip.timeOnRoute" class="form-control" id="txtTimeOnRoute" name="timeOnRoute"
+                 type="number">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-6">
+          <label class="text-muted" for="txtInitialMileage">Kilometraje inicial:</label>
+          <input [(ngModel)]="trip.initialMileage" class="form-control" id="txtInitialMileage" name="initialMileage"
+                 type="number">
+        </div>
+        <div class="col-6">
+          <label class="text-muted" for="txtFinalMileage">Kilometraje final:</label>
+          <input [(ngModel)]="trip.finalMileage" class="form-control" id="txtFinalMileage" name="finalMileage"
+                 type="number">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-6">
+          <label class="text-muted" for="initialDate">Fecha inicial:</label>
+          <ng-container *ngIf="trip.startDate">
+            <p><small>{{trip.startDate.toDate() | date:'MMM d, y'}}</small></p>
+          </ng-container>
+          <div class="input-group">
+            <input #initialDate="ngbDatepicker" (dateSelect)="getInitialDate($event)" class="form-control"
+                   id="initialDate"
+                   name="startDate"
+                   ngbDatepicker
+                   placeholder="yyyy-mm-dd">
+            <div class="input-group-append">
+              <button (click)="initialDate.toggle()" class="btn btn-outline-secondary calendar"
+                      type="button"></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <label class="text-muted" for="finalDate">Fecha final:</label>
+          <ng-container *ngIf="trip.endDate">
+            <p><small>{{trip.endDate.toDate() | date:'MMM d, y'}}</small></p>
+          </ng-container>
+          <div class="input-group">
+            <input #finalDate="ngbDatepicker" (dateSelect)="getFinalDate($event)" class="form-control" id="finalDate"
+                   name="endDate"
+                   ngbDatepicker
+                   placeholder="yyyy-mm-dd">
+            <div class="input-group-append">
+              <button (click)="finalDate.toggle()" class="btn btn-outline-secondary calendar" type="button"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="text-muted" for="txtObservation">Observaciones:</label>
+        <textarea [(ngModel)]="trip.observations" class="form-control" id="txtObservation" name="observations"
+                  rows="2"></textarea>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<app-toolbar
+  [btnHome]="true"
+  [btnSaveIn]="true"
+  [btnCancelIn]="true"
+  [btnFinishIn]="true"
+  (btnSaveOut)="getBtnSave($event, userId, userEmail)"
+  (btnCancelOut)="getCancel($event,userId, userEmail)"
+  (btnFinishOut)="getFinish($event,userId,userEmail)"
+></app-toolbar>

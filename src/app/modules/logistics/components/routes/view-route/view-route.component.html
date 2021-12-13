@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card shadow mt-1 mb-1 bg-white rounded">
+      <ul class="list-group list-group-flush">
+
+        <li class="list-group-item d-flex justify-content-between">
+          <h5 class="font-weight-bold m-0">Ruta:</h5>
+          <h5 class="font-weight-bold m-0">{{route.description}}</h5>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between">
+          <p class="m-0">Ciudad Origen:</p>
+          <p class="text-muted m-0">
+            <app-city-by-id [cityId]="route.originCity"></app-city-by-id>
+          </p>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between">
+          <p class="m-0">Dirección Origen:</p>
+          <p class="text-muted m-0">{{route.originAddress}}</p>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between">
+          <p class="m-0">Ubicación Origen:</p>
+          <a class="m-0" href="{{route.originLocation}}" target="_blank">
+            <img alt="" class="img-maps" src="../../../../../../assets/images/buttons/google-maps.png">
+          </a>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between">
+          <p class="m-0">Ciudad Destino:</p>
+          <p class="text-muted m-0">
+            <app-city-by-id [cityId]="route.destinationCity"></app-city-by-id>
+          </p>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between">
+          <p class="m-0">Dirección Destino:</p>
+          <p class="text-muted m-0">{{route.destinationAddress}}</p>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between">
+          <p class="m-0">Ubicación Destino:</p>
+          <a class="m-0" href="{{route.destinationLocation}}" target="_blank">
+            <img alt="" class="img-maps" src="../../../../../../assets/images/buttons/google-maps.png">
+          </a>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between">
+          <p class="m-0">Tiempo aproximado de llegada:</p>
+          <p class="text-muted m-0">{{route.timeOfArrival}} Hrs.</p>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</div>
+
+<app-toolbar
+  [btnHome]="true"
+  (btnBackOut)="getBack($event)"
+  [btnBackIn]="true"
+></app-toolbar>

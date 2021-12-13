@@ -1,0 +1,70 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card shadow bg-white rounded">
+      <ul class="list-group list-group-flush">
+
+        <li class="list-group-item d-flex justify-content-between">
+          <p class="font-weight-bold m-0 p-0">{{checklist.description}}</p>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between">
+          <p class="text-muted m-0">Publicado:</p>
+          <p class="m-0"><small>{{checklist.publishAt.toDate() | date:'MMM d, y' }}</small></p>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between">
+          <ng-container *ngIf="listVerification.length > 0; else noVerification">
+            <ng-container *ngFor="let verification of listVerification">
+
+              <!-- If verification user is not finished -->
+              <ng-container *ngIf="verification.finished === false; else finished">
+                <button (click)="getView(checklist.id, user, employeeId)" class="btn btn-info btn-sm" type="button">
+                  <svg class="bi bi-pencil-square" fill="currentColor" height="16" viewBox="0 0 16 16"
+                       width="16" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                    <path
+                      d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+                      fill-rule="evenodd"/>
+                  </svg>
+                  Responder
+                </button>
+              </ng-container>
+
+              <!-- If verification user is finished then disable button -->
+              <ng-template #finished>
+                <button class="btn btn-info btn-sm" disabled type="button">
+                  <svg class="bi bi-pencil-square" fill="currentColor" height="16" viewBox="0 0 16 16"
+                       width="16" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                    <path
+                      d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+                      fill-rule="evenodd"/>
+                  </svg>
+                  Responder
+                </button>
+              </ng-template>
+
+            </ng-container>
+          </ng-container>
+
+          <ng-template #noVerification>
+            <button (click)="getView(checklist.id, user, employeeId)" class="btn btn-info btn-sm" type="button">
+              <svg class="bi bi-pencil-square" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"
+                   xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                <path
+                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+                  fill-rule="evenodd"/>
+              </svg>
+              Responder
+            </button>
+          </ng-template>
+
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

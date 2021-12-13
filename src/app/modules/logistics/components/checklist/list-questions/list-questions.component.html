@@ -1,0 +1,21 @@
+<ng-container *ngIf="authSvc.user$ | async as user">
+  <ul class="list-group list-group-flush p-0">
+    <li *ngFor="let question of listQuestions"
+        class="list-group-item pl-2 pt-1 pb-1 pr-0 d-flex justify-content-between">
+
+      <div class="question p-0">
+        <p class="mt-0 mb-1 p-0"><small>{{question.description}}</small></p>
+      </div>
+
+      <div class="answer p-0">
+        <app-answer
+          [categoryId]="categoryId"
+          [checklistId]="checklistId"
+          [employeeId]="employeeId"
+          [questionId]="question.id"
+          [user]="user">
+        </app-answer>
+      </div>
+    </li>
+  </ul>
+</ng-container>
