@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Router} from "@angular/router";
 
 @Component({
@@ -6,7 +6,7 @@ import {Router} from "@angular/router";
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss']
 })
-export class ToolbarComponent implements OnInit {
+export class ToolbarComponent {
 
   //BUTTON HOME
   @Input() btnHome: boolean | any;
@@ -44,9 +44,6 @@ export class ToolbarComponent implements OnInit {
   @Output() btnFinishOut = new EventEmitter<boolean>();
 
   constructor(private router: Router) {
-  }
-
-  ngOnInit(): void {
   }
 
   getNew() {

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ChecklistByIdComponent } from './checklist-by-id.component';
+import {ChecklistByIdComponent} from './checklist-by-id.component';
 
 describe('ChecklistByIdComponent', () => {
   let component: ChecklistByIdComponent;
@@ -8,9 +8,9 @@ describe('ChecklistByIdComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ChecklistByIdComponent ]
+      declarations: [ChecklistByIdComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

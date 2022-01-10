@@ -9,6 +9,7 @@ export interface Employee {
   photoUrl: string;
   phone?: string;
   address?: string;
+  status?: boolean; //
 
   employeeTypeId: string; //from employeesTypes collection
 

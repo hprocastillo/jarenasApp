@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, OnDestroy, SimpleChanges} from '@angular/core';
 import {Subject, takeUntil} from "rxjs";
-import {ChecklistService} from "../../../services/checklist.service";
-import {Checklist} from "../../../interfaces/checklist";
+import {ChecklistService} from "../../../../../core/services/checklist.service";
+import {Checklist} from "../../../../../core/interfaces/checklist";
 
 @Component({
   selector: 'app-checklist-by-id',
@@ -9,14 +9,12 @@ import {Checklist} from "../../../interfaces/checklist";
   styleUrls: ['./checklist-by-id.component.scss']
 })
 export class ChecklistByIdComponent implements OnChanges, OnDestroy {
-  //UNSUBSCRIBE METHOD
-  private unsubscribe$ = new Subject<void>();
-
   //INPUTS AND OUTPUTS
   @Input() checklistId: string | any;
-
   //RESULTS
   checklist = {} as Checklist;
+  //UNSUBSCRIBE METHOD
+  private unsubscribe$ = new Subject<void>();
 
   constructor(private checklistSvc: ChecklistService) {
   }

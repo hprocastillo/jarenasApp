@@ -1,12 +1,12 @@
 export const environment = {
   production: false,
   firebaseConfig: {
-    apiKey: "AIzaSyByYYKG3spgivUk9Kew26ng0-T9K3AiJ-o",
-    authDomain: "gestionate-b043c.firebaseapp.com",
-    projectId: "gestionate-b043c",
-    storageBucket: "gestionate-b043c.appspot.com",
-    messagingSenderId: "1012386776268",
-    appId: "1:1012386776268:web:f2366e9de708120717ae69",
-    measurementId: "G-THWDPQPS11"
+    apiKey: "AIzaSyCjRdXE-Z_66pW3kLiDKyllTyT-hvL9E4w",
+    authDomain: "jarenas-22ea5.firebaseapp.com",
+    projectId: "jarenas-22ea5",
+    storageBucket: "jarenas-22ea5.appspot.com",
+    messagingSenderId: "18599384383",
+    appId: "1:18599384383:web:72f3a0f5d01802ce19af8a",
+    measurementId: "G-8SCHZR69JQ"
   }
 };

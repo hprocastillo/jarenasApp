@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Employee} from "../../../interfaces/employee";
+import {Component, Input} from '@angular/core';
+import {Employee} from "../../../../../core/interfaces/employee";
 import firebase from "firebase";
 import User = firebase.User;
 
@@ -8,14 +8,8 @@ import User = firebase.User;
   templateUrl: './list-checklist-historical.component.html',
   styleUrls: ['./list-checklist-historical.component.scss']
 })
-export class ListChecklistHistoricalComponent implements OnInit {
+export class ListChecklistHistoricalComponent {
+  //INPUTS AND OUTPUTS
   @Input() employee = {} as Employee;
   @Input() user = {} as User;
-
-  constructor() {
-  }
-
-  ngOnInit(): void {
-  }
-
 }

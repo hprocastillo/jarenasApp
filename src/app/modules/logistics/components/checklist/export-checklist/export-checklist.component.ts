@@ -1,24 +1,24 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {Location} from "@angular/common";
-import html2canvas from "html2canvas";
-import jspdf from "jspdf";
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 import {Subject, takeUntil} from "rxjs";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {ChecklistService} from "../../../services/checklist.service";
-import {Category, Checklist, Question, Verification} from "../../../interfaces/checklist";
-import {EmployeeService} from "../../../services/employee.service";
-import {Employee, EmployeeTypes} from "../../../interfaces/employee";
-import {Vehicle} from "../../../interfaces/vehicle";
-import {VehicleService} from "../../../services/vehicle.service";
-import {Trip} from "../../../interfaces/route";
-import {RouteService} from "../../../services/route.service";
+import {ChecklistService} from "../../../../../core/services/checklist.service";
+import {Category, Checklist, Question, Verification} from "../../../../../core/interfaces/checklist";
+import {EmployeeService} from "../../../../../core/services/employee.service";
+import {Employee, EmployeeTypes} from "../../../../../core/interfaces/employee";
+import {Vehicle} from "../../../../../core/interfaces/vehicle";
+import {VehicleService} from "../../../../../core/services/vehicle.service";
+import {Trip} from "../../../../../core/interfaces/route";
+import {RouteService} from "../../../../../core/services/route.service";
 
 @Component({
   selector: 'app-export-checklist',
   templateUrl: './export-checklist.component.html',
   styleUrls: ['./export-checklist.component.scss']
 })
-export class ExportChecklistComponent implements OnInit {
+export class ExportChecklistComponent implements OnInit, OnChanges, OnDestroy {
   //INPUTS AND OUTPUTS
   userId: string | any;
   employeeId: string | any;
@@ -56,6 +56,17 @@ export class ExportChecklistComponent implements OnInit {
         this.checklistId = params['checklistId'];
       }
     );
+    //GET CATEGORIES LIST
+    this.checklistSvc.getCategories().pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe(
+      (res: Category[]) => {
+        this.listCategories = res;
+      }
+    );
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
     //GET EMPLOYEE DATA
     if (this.employeeId) {
       this.employeeSvc.getEmployeeById(this.employeeId).pipe(
@@ -63,7 +74,6 @@ export class ExportChecklistComponent implements OnInit {
       ).subscribe(
         (res: any) => {
           this.employee = res;
-
           if (this.employee.employeeTypeId) {
             this.employeeSvc.getEmployeeTypeById(this.employee.employeeTypeId).pipe(
               takeUntil(this.unsubscribe$)
@@ -73,7 +83,6 @@ export class ExportChecklistComponent implements OnInit {
               }
             );
           }
-
         }
       );
       //GET VEHICLE BY EMPLOYEE
@@ -102,14 +111,6 @@ export class ExportChecklistComponent implements OnInit {
         }
       );
     }
-    //GET CATEGORIES LIST
-    this.checklistSvc.getCategories().pipe(
-      takeUntil(this.unsubscribe$)
-    ).subscribe(
-      (res: Category[]) => {
-        this.listCategories = res;
-      }
-    );
   }
 
   getBack(event: any) {
@@ -126,7 +127,7 @@ export class ExportChecklistComponent implements OnInit {
           let fileWidth = 208;
           let fileHeight = canvas.height * fileWidth / canvas.width;
           const FILEURI = canvas.toDataURL('image/png')
-          let PDF = new jspdf('p', 'mm', 'a4');
+          let PDF = new jsPDF('p', 'mm', 'a4');
           let position = 0;
           PDF.addImage(FILEURI, 'PNG', 0, position, fileWidth, fileHeight)
           PDF.save('lista-checklist.pdf');
@@ -134,7 +135,6 @@ export class ExportChecklistComponent implements OnInit {
       }
     }
   }
-
 
   ngOnDestroy(): void {
     this.unsubscribe$.next();

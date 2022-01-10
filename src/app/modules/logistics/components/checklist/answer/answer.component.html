@@ -32,12 +32,12 @@
 
     <div>
       <input
-        type="text"
-        class="form-control form-control-sm mt-2"
+        (change)="getEditObservations($event.target, user, a)"
         [ngModel]="a.observations"
+        class="form-control form-control-sm mt-2"
         name="observations"
         placeholder="Observaciones"
-        (change)="getEditObservations($event.target, user, a)">
+        type="text">
     </div>
 
   </ng-container>

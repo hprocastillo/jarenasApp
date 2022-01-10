@@ -1,27 +1,25 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {Location} from "@angular/common";
 import {Subject, takeUntil} from "rxjs";
-import {Trip} from "../../../interfaces/route";
+import {Trip} from "../../../../../core/interfaces/route";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {RouteService} from "../../../services/route.service";
+import {RouteService} from "../../../../../core/services/route.service";
 
 @Component({
   selector: 'app-view-trip',
   templateUrl: './view-trip.component.html',
   styleUrls: ['./view-trip.component.scss']
 })
-export class ViewTripComponent implements OnInit, OnDestroy {
-  //UNSUBSCRIBE METHOD
-  private unsubscribe$ = new Subject<void>();
-
+export class ViewTripComponent implements OnInit, OnChanges, OnDestroy {
   //INPUTS AND OUTPUTS
   tripId: string | any;
   userId: string | any;
   userEmail: string | any;
   employeeId: string | any;
-
   //RESULTS
   trip = {} as Trip;
+  //UNSUBSCRIBE METHOD
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private location: Location,
@@ -40,6 +38,9 @@ export class ViewTripComponent implements OnInit, OnDestroy {
         this.employeeId = params['employeeId'];
       }
     );
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
     //GET TRIP
     if (this.tripId) {
       this.routeSvc.getTripById(this.tripId).pipe(

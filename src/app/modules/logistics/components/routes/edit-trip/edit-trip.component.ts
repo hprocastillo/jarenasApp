@@ -1,36 +1,33 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {Subject, takeUntil} from "rxjs";
-import {Route, Trip} from "../../../interfaces/route";
-import {RouteService} from "../../../services/route.service";
-import {Vehicle} from "../../../interfaces/vehicle";
-import {Checklist} from "../../../interfaces/checklist";
-import {ChecklistService} from "../../../services/checklist.service";
-import {VehicleService} from "../../../services/vehicle.service";
+import {Route, Trip} from "../../../../../core/interfaces/route";
+import {RouteService} from "../../../../../core/services/route.service";
+import {Vehicle} from "../../../../../core/interfaces/vehicle";
+import {Checklist} from "../../../../../core/interfaces/checklist";
+import {ChecklistService} from "../../../../../core/services/checklist.service";
+import {VehicleService} from "../../../../../core/services/vehicle.service";
 
 @Component({
   selector: 'app-edit-trip',
   templateUrl: './edit-trip.component.html',
   styleUrls: ['./edit-trip.component.scss']
 })
-export class EditTripComponent implements OnInit, OnDestroy {
-  //UNSUBSCRIBE METHOD
-  private unsubscribe$ = new Subject<void>();
-
+export class EditTripComponent implements OnInit, OnChanges, OnDestroy {
   //INPUTS AND OUTPUTS
   tripId: string | any;
   userId: string | any;
   userEmail: string | any;
   employeeId: string | any;
-
   //VARIABLES
   today = new Date();
-
   //RESULTS
   trip = {} as Trip;
   listRoutes: Route[] = [];
   listVehicles: Vehicle[] = [];
   listChecklist: Checklist[] = [];
+  //UNSUBSCRIBE METHOD
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private router: Router,
@@ -50,16 +47,6 @@ export class EditTripComponent implements OnInit, OnDestroy {
         this.employeeId = params['employeeId'];
       }
     );
-    //GET TRIP
-    if (this.tripId) {
-      this.routeSvc.getTripById(this.tripId).pipe(
-        takeUntil(this.unsubscribe$)
-      ).subscribe(
-        (res: any) => {
-          this.trip = res;
-        }
-      );
-    }
     //GET LIST ROUTES
     this.routeSvc.getRoutes().pipe(
       takeUntil(this.unsubscribe$)
@@ -76,6 +63,19 @@ export class EditTripComponent implements OnInit, OnDestroy {
         this.listChecklist = res;
       }
     );
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    //GET TRIP
+    if (this.tripId) {
+      this.routeSvc.getTripById(this.tripId).pipe(
+        takeUntil(this.unsubscribe$)
+      ).subscribe(
+        (res: any) => {
+          this.trip = res;
+        }
+      );
+    }
     //GET LIST VEHICLES
     if (this.employeeId) {
       this.vehicleSvc.getVehiclesByEmployee(this.employeeId).pipe(
@@ -150,7 +150,7 @@ export class EditTripComponent implements OnInit, OnDestroy {
 
   getFinish(event: any, userId: string, userEmail: string) {
     if (event === true) {
-      if(confirm("Desea finalizar la ruta?, Si acepta no podra realizar cambios.")){
+      if (confirm("Desea finalizar la ruta?, Si acepta no podra realizar cambios.")) {
         this.trip.updatedBy = userId;
         // @ts-ignore
         this.trip.updatedAt = this.today;

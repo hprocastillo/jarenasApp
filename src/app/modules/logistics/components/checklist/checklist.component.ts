@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subject, takeUntil} from "rxjs";
-import {Employee} from "../../interfaces/employee";
-import {AuthService} from "../../../auth/services/auth.service";
+import {Employee} from "../../../../core/interfaces/employee";
+import {AuthService} from "../../../../core/services/auth.service";
 import {ActivatedRoute, Params} from "@angular/router";
-import {EmployeeService} from "../../services/employee.service";
+import {EmployeeService} from "../../../../core/services/employee.service";
 
 @Component({
   selector: 'app-checklist',

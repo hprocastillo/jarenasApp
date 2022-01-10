@@ -1,9 +1,9 @@
-import {Component, Input, OnChanges, OnDestroy, SimpleChanges} from '@angular/core';
-import {Employee} from "../../../interfaces/employee";
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Employee} from "../../../../../core/interfaces/employee";
 import firebase from "firebase";
 import {Subject, takeUntil} from "rxjs";
-import {Checklist} from "../../../interfaces/checklist";
-import {ChecklistService} from "../../../services/checklist.service";
+import {Checklist} from "../../../../../core/interfaces/checklist";
+import {ChecklistService} from "../../../../../core/services/checklist.service";
 import {Location} from "@angular/common";
 import User = firebase.User;
 
@@ -12,7 +12,7 @@ import User = firebase.User;
   templateUrl: './list-checklist-current.component.html',
   styleUrls: ['./list-checklist-current.component.scss']
 })
-export class ListChecklistCurrentComponent implements OnChanges, OnDestroy {
+export class ListChecklistCurrentComponent implements OnInit, OnDestroy {
   //INPUTS AND OUTPUTS
   @Input() employee = {} as Employee;
   @Input() user = {} as User;
@@ -21,12 +21,10 @@ export class ListChecklistCurrentComponent implements OnChanges, OnDestroy {
   //UNSUBSCRIBE METHOD
   private unsubscribe$ = new Subject<void>();
 
-  constructor(
-    private checklistSvc: ChecklistService,
-    private location: Location) {
+  constructor(private checklistSvc: ChecklistService, private location: Location) {
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnInit(): void {
     this.checklistSvc.getChecklistsActiveAndPublish().pipe(
       takeUntil(this.unsubscribe$)
     ).subscribe(

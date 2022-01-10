@@ -80,9 +80,9 @@
 </div>
 
 <app-toolbar
+  (btnCancelOut)="getCancel($event,userId, userEmail)"
+  (btnSaveOut)="getBtnSave($event, userId, userEmail, employeeId)"
+  [btnCancelIn]="true"
   [btnHome]="true"
   [btnSaveIn]="true"
-  [btnCancelIn]="true"
-  (btnSaveOut)="getBtnSave($event, userId, userEmail, employeeId)"
-  (btnCancelOut)="getCancel($event,userId, userEmail)"
 ></app-toolbar>

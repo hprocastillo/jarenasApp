@@ -1,10 +1,10 @@
 import {Component, Input, OnChanges, OnDestroy, SimpleChanges} from '@angular/core';
 import {Location} from "@angular/common";
-import {Employee} from "../../../interfaces/employee";
+import {Employee} from "../../../../../core/interfaces/employee";
 import firebase from "firebase";
 import {Subject, takeUntil} from "rxjs";
-import {Trip} from "../../../interfaces/route";
-import {RouteService} from "../../../services/route.service";
+import {Trip} from "../../../../../core/interfaces/route";
+import {RouteService} from "../../../../../core/services/route.service";
 import {Router} from "@angular/router";
 import User = firebase.User;
 
@@ -14,15 +14,13 @@ import User = firebase.User;
   styleUrls: ['./list-trips.component.scss']
 })
 export class ListTripsComponent implements OnChanges, OnDestroy {
-  //UNSUBSCRIBE METHOD
-  private unsubscribe$ = new Subject<void>();
-
   //INPUTS AND OUTPUTS
   @Input() employee = {} as Employee;
   @Input() user = {} as User;
-
   //RESULTS
   listTrips: Trip[] = [];
+  //UNSUBSCRIBE METHOD
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private router: Router,

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ViewTripComponent } from './view-trip.component';
+import {ViewTripComponent} from './view-trip.component';
 
 describe('ViewTripComponent', () => {
   let component: ViewTripComponent;
@@ -8,9 +8,9 @@ describe('ViewTripComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ViewTripComponent ]
+      declarations: [ViewTripComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

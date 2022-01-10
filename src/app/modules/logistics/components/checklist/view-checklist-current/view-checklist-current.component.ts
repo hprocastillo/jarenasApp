@@ -1,9 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {Subject, takeUntil} from "rxjs";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {AngularFireStorage, AngularFireUploadTask} from "@angular/fire/storage";
-import {ChecklistService} from "../../../services/checklist.service";
-import {Category, Checklist, Verification} from "../../../interfaces/checklist";
+import {ChecklistService} from "../../../../../core/services/checklist.service";
+import {Category, Checklist, Verification} from "../../../../../core/interfaces/checklist";
 import {Location} from "@angular/common";
 
 @Component({
@@ -11,7 +11,7 @@ import {Location} from "@angular/common";
   templateUrl: './view-checklist-current.component.html',
   styleUrls: ['./view-checklist-current.component.scss']
 })
-export class ViewChecklistCurrentComponent implements OnInit, OnDestroy {
+export class ViewChecklistCurrentComponent implements OnInit, OnChanges, OnDestroy {
   //INPUTS AND OUTPUTS
   checklistId: string | any;
   userId: string | any;
@@ -48,6 +48,17 @@ export class ViewChecklistCurrentComponent implements OnInit, OnDestroy {
         this.employeeId = params['employeeId'];
       }
     );
+    //GET LIST CATEGORIES
+    this.checklistSvc.getCategories().pipe(
+      takeUntil(this.unsubscribe$)
+    ).subscribe(
+      (res: Category[]) => {
+        this.listCategories = res;
+      }
+    );
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
     //VERIFIED IF USER VERIFICATION CHECKLIST EXISTS
     if (this.checklistId && this.employeeId && this.userId) {
       this.checklistSvc.getVerificationsByChecklistByEmployee(this.checklistId, this.employeeId).pipe(
@@ -89,14 +100,6 @@ export class ViewChecklistCurrentComponent implements OnInit, OnDestroy {
         }
       );
     }
-    //GET LIST CATEGORIES
-    this.checklistSvc.getCategories().pipe(
-      takeUntil(this.unsubscribe$)
-    ).subscribe(
-      (res: Category[]) => {
-        this.listCategories = res;
-      }
-    );
   }
 
   async getPhoto(event: any, checklistId: any) {

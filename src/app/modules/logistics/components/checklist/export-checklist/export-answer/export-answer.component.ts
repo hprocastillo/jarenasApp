@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, OnDestroy, SimpleChanges} from '@angular/core';
 import {Subject, takeUntil} from "rxjs";
-import {Answer} from "../../../../interfaces/checklist";
-import {ChecklistService} from "../../../../services/checklist.service";
+import {Answer} from "../../../../../../core/interfaces/checklist";
+import {ChecklistService} from "../../../../../../core/services/checklist.service";
 
 @Component({
   selector: 'app-export-answer',

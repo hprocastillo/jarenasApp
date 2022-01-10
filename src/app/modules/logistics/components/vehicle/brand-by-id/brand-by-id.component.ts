@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, OnDestroy, SimpleChanges} from '@angular/core';
-import {VehicleService} from "../../../services/vehicle.service";
+import {VehicleService} from "../../../../../core/services/vehicle.service";
 import {Subject, takeUntil} from "rxjs";
-import {Brand} from "../../../interfaces/vehicle";
+import {Brand} from "../../../../../core/interfaces/vehicle";
 
 @Component({
   selector: 'app-brand-by-id',

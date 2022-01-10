@@ -1,27 +1,25 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {Location} from '@angular/common';
 import {ActivatedRoute, Params} from "@angular/router";
-import {EmployeeService} from "../../services/employee.service";
+import {EmployeeService} from "../../../../core/services/employee.service";
 import {Subject, takeUntil} from "rxjs";
-import {Employee} from "../../interfaces/employee";
-import {VehicleService} from "../../services/vehicle.service";
-import {Vehicle} from "../../interfaces/vehicle";
+import {Employee} from "../../../../core/interfaces/employee";
+import {VehicleService} from "../../../../core/services/vehicle.service";
+import {Vehicle} from "../../../../core/interfaces/vehicle";
 
 @Component({
   selector: 'app-vehicle',
   templateUrl: './vehicle.component.html',
   styleUrls: ['./vehicle.component.scss']
 })
-export class VehicleComponent implements OnInit, OnDestroy {
-  //UNSUBSCRIBE METHOD
-  private unsubscribe$ = new Subject<void>();
-
+export class VehicleComponent implements OnInit, OnChanges, OnDestroy {
   //INPUTS AND OUTPUTS
   userId: string | any;
   userEmail: string | any;
-
   //RESULTS
   listVehicles: Vehicle[] = [];
+  //UNSUBSCRIBE METHOD
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private location: Location,
@@ -38,6 +36,9 @@ export class VehicleComponent implements OnInit, OnDestroy {
         this.userEmail = params['userEmail'];
       }
     );
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
     //GET DATA EMPLOYEE
     if (this.userEmail) {
       this.employeeSvc.getEmployeeByEmail(this.userEmail).pipe(

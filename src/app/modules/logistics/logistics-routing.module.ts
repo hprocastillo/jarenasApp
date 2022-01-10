@@ -1,7 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {LogisticComponent} from "./components/logistic/logistic.component";
-import {AuthGuard} from "../auth/guards/auth.guard";
+import {AuthGuard} from "../../core/guards/auth.guard";
 import {ChecklistComponent} from "./components/checklist/checklist.component";
 import {RoutesComponent} from "./components/routes/routes.component";
 import {VehicleComponent} from "./components/vehicle/vehicle.component";

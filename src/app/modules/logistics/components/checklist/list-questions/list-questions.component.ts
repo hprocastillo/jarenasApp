@@ -1,8 +1,8 @@
 import {Component, Input, OnChanges, OnDestroy, SimpleChanges} from '@angular/core';
 import {Subject, takeUntil} from "rxjs";
-import {Question} from "../../../interfaces/checklist";
-import {AuthService} from "../../../../auth/services/auth.service";
-import {ChecklistService} from "../../../services/checklist.service";
+import {Question} from "../../../../../core/interfaces/checklist";
+import {AuthService} from "../../../../../core/services/auth.service";
+import {ChecklistService} from "../../../../../core/services/checklist.service";
 
 @Component({
   selector: 'app-list-questions',
@@ -19,9 +19,7 @@ export class ListQuestionsComponent implements OnChanges, OnDestroy {
   //UNSUBSCRIBE METHOD
   private unsubscribe$ = new Subject<void>();
 
-  constructor(
-    public authSvc: AuthService,
-    private checklistSvc: ChecklistService) {
+  constructor(public authSvc: AuthService, private checklistSvc: ChecklistService) {
   }
 
   ngOnChanges(changes: SimpleChanges): void {

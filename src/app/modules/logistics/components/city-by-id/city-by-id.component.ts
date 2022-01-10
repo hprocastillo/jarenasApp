@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, OnDestroy, SimpleChanges} from '@angular/core';
 import {Subject, takeUntil} from "rxjs";
-import {Cities} from "../../interfaces/route";
-import {RouteService} from "../../services/route.service";
+import {Cities} from "../../../../core/interfaces/route";
+import {RouteService} from "../../../../core/services/route.service";
 
 @Component({
   selector: 'app-city-by-id',

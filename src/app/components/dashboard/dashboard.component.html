@@ -1,0 +1,43 @@
+<!-- SHOW IF USER IS EMPLOYEE REGISTERED -->
+<ng-container *ngIf="isEmployee === true; else noEmployee">
+
+  <!-- SHOW IF EMPLOYEE ACCOUNT IS ACTIVE -->
+  <ng-container *ngIf="isActive === true; else noActive">
+    <router-outlet></router-outlet>
+  </ng-container>
+
+  <!-- SHOW IF EMPLOYEE ACCOUNT IS NOT ACTIVE -->
+  <ng-template #noActive>
+    <div class="alert alert-danger" role="alert">
+      Tu cuenta de empleado no esta activa!
+    </div>
+  </ng-template>
+
+</ng-container>
+
+
+
+<!-- SHOW IF USER IS NOT EMPLOYEE REGISTERED -->
+<ng-template #noEmployee>
+  <div class="row">
+    <div class="col-12">
+
+      <!-- SHOW IF EXIST A REQUEST JOIN -->
+      <ng-container *ngIf="isExistRequest === true; else noRequest">
+        <div class="alert alert-success" role="alert">
+          Ahora tienes una solicitud de registro en espera!.
+        </div>
+      </ng-container>
+
+      <!-- SHOW IF NOT EXIST A REQUEST JOIN -->
+      <ng-template #noRequest>
+        <div class="alert alert-danger" role="alert">
+          No está registrado como empleado aun. <a (click)="getModalRequest(user)"
+                                                   class="alert-link">¡Solicite ser registrado
+          aquí!</a>.
+        </div>
+      </ng-template>
+
+    </div>
+  </div>
+</ng-template>

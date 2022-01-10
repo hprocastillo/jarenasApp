@@ -24,10 +24,8 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies": [
-              "rxjs-compat",
-              "jspdf",
-              "canvg",
-              "@babel/runtime-corejs3"
+              "lodash",
+              "rxjs-compat"
             ],
             "outputPath": "dist/jarenasApp",
             "index": "src/index.html",

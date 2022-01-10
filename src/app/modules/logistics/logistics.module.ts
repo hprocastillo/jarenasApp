@@ -36,9 +36,9 @@ import {
   ExportQuestionsComponent
 } from './components/checklist/export-checklist/export-questions/export-questions.component';
 import {ExportAnswerComponent} from './components/checklist/export-checklist/export-answer/export-answer.component';
-import { ViewTripComponent } from './components/routes/view-trip/view-trip.component';
-import { VehicleByIdComponent } from './components/vehicle/vehicle-by-id/vehicle-by-id.component';
-import { ChecklistByIdComponent } from './components/checklist/checklist-by-id/checklist-by-id.component';
+import {ViewTripComponent} from './components/routes/view-trip/view-trip.component';
+import {VehicleByIdComponent} from './components/vehicle/vehicle-by-id/vehicle-by-id.component';
+import {ChecklistByIdComponent} from './components/checklist/checklist-by-id/checklist-by-id.component';
 
 
 @NgModule({

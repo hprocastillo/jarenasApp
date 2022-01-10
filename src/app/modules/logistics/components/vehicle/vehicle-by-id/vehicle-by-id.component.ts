@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, OnDestroy, SimpleChanges} from '@angular/core';
 import {Subject, takeUntil} from "rxjs";
-import {Vehicle} from "../../../interfaces/vehicle";
-import {VehicleService} from "../../../services/vehicle.service";
+import {Vehicle} from "../../../../../core/interfaces/vehicle";
+import {VehicleService} from "../../../../../core/services/vehicle.service";
 
 @Component({
   selector: 'app-vehicle-by-id',
@@ -9,14 +9,12 @@ import {VehicleService} from "../../../services/vehicle.service";
   styleUrls: ['./vehicle-by-id.component.scss']
 })
 export class VehicleByIdComponent implements OnChanges, OnDestroy {
-  //UNSUBSCRIBE METHOD
-  private unsubscribe$ = new Subject<void>();
-
   //INPUTS AND OUTPUTS
   @Input() vehicleId: string | any;
-
   //RESULTS
   vehicle = {} as Vehicle;
+  //UNSUBSCRIBE METHOD
+  private unsubscribe$ = new Subject<void>();
 
   constructor(private vehicleSvc: VehicleService) {
   }

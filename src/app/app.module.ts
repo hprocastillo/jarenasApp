@@ -9,12 +9,16 @@ import {environment} from "../environments/environment";
 import {AngularFirestoreModule} from "@angular/fire/firestore";
 import {AngularFireStorageModule} from "@angular/fire/storage";
 import {AngularFireAuthModule} from "@angular/fire/auth";
-import {NavbarComponent} from './shared/navbar/navbar.component';
+import {NavbarComponent} from './shared/components/navbar/navbar.component';
+import {DashboardComponent} from './components/dashboard/dashboard.component';
+import { ModalJoinRequestComponent } from './components/request/modal-join-request/modal-join-request.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    DashboardComponent,
+    ModalJoinRequestComponent,
   ],
   imports: [
     BrowserModule,

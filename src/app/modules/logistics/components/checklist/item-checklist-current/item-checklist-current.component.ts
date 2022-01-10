@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, OnDestroy, SimpleChanges} from '@angular/core';
-import {Checklist, Verification} from "../../../interfaces/checklist";
+import {Checklist, Verification} from "../../../../../core/interfaces/checklist";
 import {Subject, takeUntil} from "rxjs";
-import {ChecklistService} from "../../../services/checklist.service";
+import {ChecklistService} from "../../../../../core/services/checklist.service";
 import {Router} from "@angular/router";
 import firebase from "firebase";
 import User = firebase.User;
@@ -21,9 +21,7 @@ export class ItemChecklistCurrentComponent implements OnChanges, OnDestroy {
   //UNSUBSCRIBE METHOD
   private unsubscribe$ = new Subject<void>();
 
-  constructor(
-    private router: Router,
-    private checklistSvc: ChecklistService) {
+  constructor(private router: Router, private checklistSvc: ChecklistService) {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -47,5 +45,4 @@ export class ItemChecklistCurrentComponent implements OnChanges, OnDestroy {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
   }
-
 }

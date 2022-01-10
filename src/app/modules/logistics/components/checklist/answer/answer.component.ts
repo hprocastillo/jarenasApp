@@ -1,8 +1,8 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnDestroy, SimpleChanges} from '@angular/core';
 import firebase from "firebase";
 import {Subject, takeUntil} from "rxjs";
-import {Answer} from "../../../interfaces/checklist";
-import {ChecklistService} from "../../../services/checklist.service";
+import {Answer} from "../../../../../core/interfaces/checklist";
+import {ChecklistService} from "../../../../../core/services/checklist.service";
 import User = firebase.User;
 
 @Component({
@@ -10,28 +10,25 @@ import User = firebase.User;
   templateUrl: './answer.component.html',
   styleUrls: ['./answer.component.scss']
 })
-export class AnswerComponent implements OnInit, OnDestroy {
-  //UNSUBSCRIBE METHOD
-  private unsubscribe$ = new Subject<void>();
-
+export class AnswerComponent implements OnChanges, OnDestroy {
   //INPUTS AND OUTPUTS
   @Input() user = {} as User;
   @Input() employeeId: string | any;
   @Input() categoryId: string | any;
   @Input() checklistId: string | any;
   @Input() questionId: string | any;
-
   //RESULTS
   exist: string = '';
   answer: Answer[] = [];
-
   //VARIABLES
   today = new Date();
+  //UNSUBSCRIBE METHOD
+  private unsubscribe$ = new Subject<void>();
 
   constructor(private checklistSvc: ChecklistService) {
   }
 
-  ngOnInit(): void {
+  ngOnChanges(changes: SimpleChanges): void {
     if (this.questionId) {
       this.checklistSvc.getAnswers(this.checklistId, this.categoryId, this.questionId, this.employeeId).pipe(
         takeUntil(this.unsubscribe$)

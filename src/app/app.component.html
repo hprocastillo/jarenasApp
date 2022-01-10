@@ -1,14 +1,14 @@
-<!-- IF USER IS LOGIN -->
+<!-- SHOW IF USER IS LOGGED -->
 <ng-container *ngIf="authSvc.user$ | async as user; else login">
   <app-navbar></app-navbar>
-  <div class="container-fluid pt-2">
-    <router-outlet></router-outlet>
+  <div class="container-fluid mt-3">
+    <app-dashboard [user]="user"></app-dashboard>
   </div>
 </ng-container>
 
-<!-- IF USER IS NOT LOGIN -->
+<!-- SHOW IF USER IS NOT LOGGED -->
 <ng-template #login>
-  <div class="container-fluid pt-2">
+  <div class="container-fluid mt-3">
     <router-outlet></router-outlet>
   </div>
 </ng-template>

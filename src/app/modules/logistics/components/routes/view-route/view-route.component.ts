@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subject, takeUntil} from "rxjs";
-import {Route} from "../../../interfaces/route";
+import {Route} from "../../../../../core/interfaces/route";
 import {ActivatedRoute, Params, Router} from "@angular/router";
-import {RouteService} from "../../../services/route.service";
+import {RouteService} from "../../../../../core/services/route.service";
 import {Location} from "@angular/common";
 
 @Component({
@@ -11,17 +11,15 @@ import {Location} from "@angular/common";
   styleUrls: ['./view-route.component.scss']
 })
 export class ViewRouteComponent implements OnInit, OnDestroy {
-  //UNSUBSCRIBE METHOD
-  private unsubscribe$ = new Subject<void>();
-
   //INPUTS AND OUTPUTS
   routeId: string | any;
   userId: string | any;
   userEmail: string | any;
   employeeId: string | any;
-
   //RESULTS
   route = {} as Route;
+  //UNSUBSCRIBE METHOD
+  private unsubscribe$ = new Subject<void>();
 
   constructor(
     private location: Location,
